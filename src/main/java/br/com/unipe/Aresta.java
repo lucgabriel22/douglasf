@@ -4,26 +4,39 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
-@Setter
 @Getter
+@Setter
 public class Aresta {
     private String nome;
     private Vertice verticeOrigem;
     private Vertice verticeDestino;
+    private Integer peso;
 
-    //Construtor para arestas sem nome
-    public Aresta(Vertice v1, Vertice v2) {
-        this.verticeOrigem = v1;
-        this.verticeDestino = v2;
+    public Aresta(String nome, Vertice verticeOrigem, Vertice verticeDestino, Integer peso) {
+        this.nome = nome;
+        this.verticeOrigem = verticeOrigem;
+        this.verticeDestino = verticeDestino;
+        this.peso = peso;
     }
-    public String getNome(){
+
+    public Aresta(String nome, Vertice verticeOrigem, Vertice verticeDestino) {
+        this(nome, verticeOrigem, verticeDestino, null);
+    }
+
+    public Aresta(Vertice verticeOrigem, Vertice verticeDestino, Integer peso) {
+        this(null, verticeOrigem, verticeDestino, peso);
+    }
+
+    public Aresta(Vertice verticeOrigem, Vertice verticeDestino) {
+        this(null, verticeOrigem, verticeDestino, null);
+    }
+
+    public String getNome() {
         return nome != null ? nome : "";
     }
 
     @Override
     public String toString() {
-        String nomeAresta = nome != null ? nome : "";
-        return "\n" + nomeAresta + "{" + verticeOrigem.getNome() + "," + verticeDestino.getNome() + "}";
+        return "\n" + getNome() + "{" + verticeOrigem.getNome() + "," + verticeDestino.getNome() + "}";
     }
 }
